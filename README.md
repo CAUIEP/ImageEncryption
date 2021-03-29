@@ -10,5 +10,16 @@ source https://nevonprojects.com/image-encryption-using-aes-algorithm/
 ## Problem
 
 ## Method
+### 고객의 요구 사항
+1. 비대면 은행 업무를 선호하는 사람들이 많아지면서, 고객의 개인정보를 사진으로 찍어서 주고 받는 일이 잦아짐
+2. 이때 특별한 웹 페이지를 만들어서 사용자가 웹에서 은행으로 사진을 전송하면 그 사진이 안전하게 은행에 도착하여, 은행에서 업무에 그 사진을 사용하고 싶어함
+
+### 선택한 방법론
+- Agile 방법론
+
+### Sub-Problems
+1. 사진을 안전하게 송수신 하는 기능 -> feature/Encryption
+2. 사용자가 은행으로 서류 사진을 전송하는 기능 -> feature/User
+3. 은행에서 사용자가 보낸 사진을 받아서 다운받는 기능 -> feature/Bank
 
 ## Scenario
