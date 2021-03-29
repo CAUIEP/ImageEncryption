@@ -36,10 +36,11 @@ source https://nevonprojects.com/image-encryption-using-aes-algorithm/
 ![_2021-03-25__10 59 35](https://user-images.githubusercontent.com/62539910/112854665-0922fe00-90e9-11eb-9219-d080ba0bb5a6.png)
 
 |  **Subproblem**       |     **팀원1**      |     **팀원2**    |
-| :—————— |:——————:| :——:|
+| :------------- |:-------------:| :-----:|
 | **Feature/Encryption**      | 김영빈 | 박희수 |
 | **Feature/User**     | 임혜정      |   정도현 |
 | **Feature/Bank** | 방수원      |    장영욱 |
+
 
 1. Encryption을 구현하는 그룹은 원본 사진의 Encryption, 암호화된 사진의 Decryption, 암호화 알고리듬의 Key 관리를 구현할 계획이다.
 2. User을 구현하는 그룹은 고객의 회원가입 및 로그인, 고객 자신에게 주어진 요청 확인, 사진을 수신자에게 전송하는 기능을 구현할 계획이다. 이때 자신에게 주어진 요청이란 은행에서 사용자에게 서류를 요청할 때 할당되는 이벤트이다.
