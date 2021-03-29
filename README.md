@@ -2,6 +2,9 @@
 2021-1 Software Engineering Team Project 
 source https://nevonprojects.com/image-encryption-using-aes-algorithm/
 
+Team Notion
+https://www.notion.so/e7b05fcf792b4be9a13e5264cabe0323
+
 # Team Info
 |  이름        |     학번      |     학과    |
 | ------------- |:-------------:| :-----:|
