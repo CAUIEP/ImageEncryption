@@ -40,9 +40,9 @@ https://www.notion.so/e7b05fcf792b4be9a13e5264cabe0323
 
 |  **Subproblem**       |     **팀원1**      |     **팀원2**    |
 | :------------- |:-------------:| :-----:|
-| **Feature/Encryption**      | 김영빈 | 박희수 |
-| **Feature/User**     | 임혜정      |   정도현 |
-| **Feature/Bank** | 방수원      |    장영욱 |
+| **Feature/PictureHandler**      | 김영빈 | 박희수 |
+| **Feature/Customer**     | 임혜정      |   정도현 |
+| **Feature/Clerk** | 방수원      |    장영욱 |
 
 
 1. PictureHandler을 구현하는 그룹은 원본 사진의 Encryption, 암호화된 사진의 Decryption, 암호화 알고리듬의 Key 관리, 암호화된 파일의 저장 및 관리등을 구현할 계획이다.
