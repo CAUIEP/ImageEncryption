@@ -1,0 +1,14 @@
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+    <div>
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+    </div>
+    {% endfor %}
+    <div>
+        <button type="submit">로그인</button>
+    </div>
+</form>
+
