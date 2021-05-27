@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
+from .utils import *
+from django.contrib import messages
 
 
 def sign_up(request):
@@ -61,6 +63,5 @@ def logout(request):
         return render(request, "customer/logout.html")
 
 def customer_home(request):
-    return render(request, "customer/customer_home.html")
+    return PageMaker.get_page(request, template_name="customer/customer_home.html")
 
-# Create your views here.
