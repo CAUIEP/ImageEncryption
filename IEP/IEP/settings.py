@@ -42,7 +42,8 @@ INSTALLED_APPS = [
 
     'Picture_Handler',
     'Customer',
-    'core'
+    'core',
+    'Clerk'
 ]
 
 MIDDLEWARE = [

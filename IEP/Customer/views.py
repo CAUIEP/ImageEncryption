@@ -87,16 +87,20 @@ def customer_read(request, pk):
     return PageMaker.get_page(request, template_name="customer/customer_read.html", context=context)
 
 
-#Update
 def picture_upload(request, pk):
     picture_request = get_object_or_404(PictureRequest, pk=pk)
     clerk = picture_request.clerk
     customer = request.user
     if request.method == 'POST':
-        form = Discrimiator.get_form_POST(request, instance=picture_request)
+        form = PictureRequestForm(request.POST, request.FILES, instance=picture_request)
         if form.is_valid():
-            Upload.upload(request, picture_request, clerk, customer, form, pk)
-            AlarmOperator.activate(request, "사진 전송이 완료되었습니다.")
+            picture_request.clerk = clerk
+            picture_request.customer = customer
+            picture_request.uploaded = True
+            picture_request = form.save()
+            picture_request.image = request.FILES.get('image')
+
+            return redirect('PictureHandler:picture_handler_encryptor', pk)
     else:
-        form = Discrimiator.get_form_GET(instance=picture_request)
+        form = PictureRequestForm(instance=picture_request)
     return render(request, 'Customer/picture_upload.html', {'form': form, 'pk':pk})

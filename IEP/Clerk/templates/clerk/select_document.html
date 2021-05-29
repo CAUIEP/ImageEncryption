@@ -1,0 +1,57 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/clerk/style.css"%}'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
+    <title>Select Document</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'core/Group 5.svg' %}">
+
+</head>
+<body>
+    <div>
+        <a href="{% url 'home' %}" class='menu'>home</a>
+        <a href="{% url 'Clerk:clerk_home' %}" class='menu'>clerk</a>
+        <a href="{% url 'Customer:customer_home' %}" class='menu'>customer</a>
+    </div>
+
+    <h1>Request page</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <table class='requestTable'>
+                <tr>
+                    <td>| Customer |</td>
+                    <td>{{customer.username}}</td>
+                </tr>
+                <tr>
+                    <td>| Document |</td>
+                    <td>
+                            <select name="document" id='docSelect'>
+                                <option value="">--Choose a document--</option>
+                                {% for d in documents %}
+                                    <option value="{{d.id}}">{{d.document_name}}</option>
+                                {% endfor %}
+                            </select>
+                        
+                    </td>
+                </tr>
+                
+
+            </table>
+            <input type="hidden" value="{{customer.id}}" name ="customer"/>
+            <input type="submit" value="요청" class='submit'>
+        </div>
+    </form>
+    {% if messages %}        
+        {% for message in messages %}
+            <script>alert("{{ message}}");</script>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>

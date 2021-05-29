@@ -24,10 +24,10 @@ def send_to_decryptor(request, pk):
         "picture_request" : picture_request
     }
 
-    #return render(request, "Clerk/send_to_decryptor.html", context=context) 
+    return render(request, "Clerk/send_to_decryptor.html", context=context) 
 
 
 
 def picture_delete(request, pk):
     DataBaseConnector.delete_complete_request(pk)
-    #return redirect("Clerk:clerk_home")
+    return redirect("Clerk:clerk_home")

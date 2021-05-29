@@ -1,0 +1,5 @@
+
+<form action="{% url 'Clerk:logout' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">네</button>
+</form>
