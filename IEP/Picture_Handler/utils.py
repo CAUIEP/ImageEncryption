@@ -70,12 +70,12 @@ class Checker:
                 return True
         return False
 
+
 class PictureEncryptor:
     @classmethod
-    def encrypt_image(cls, image, key):
+    def encrypt_image(cls, image, key_value):
 
         #Just for debugging need to delete
-        key_value = '1'
         key_value = key_value.encode()
         digest = hashlib.md5(key_value).digest() # 16 byte binary
 
@@ -97,9 +97,14 @@ class PictureEncryptor:
         with open(encrypt_file, 'wb') as f:
             f.write(enc_data)
 
-        os.remove(image_path)
+        cls.delete_local_encrypted_file(image_path)
 
         return encrypt_file
+
+    @classmethod
+    def delete_local_encrypted_file(cls, image):
+        os.remove(image)
+
 
 
 class PictureDecryptor:
