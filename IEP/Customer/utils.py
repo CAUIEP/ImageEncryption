@@ -33,13 +33,3 @@ class Discrimiator:
     @classmethod
     def get_form_GET(cls, instance):
         return PictureRequestForm(instance)
-
-class Upload:
-    @classmethod
-    def upload(cls, request, picture_request, clerk, customer, form, pk):
-            picture_request.clerk = clerk
-            picture_request.customer = customer
-            picture_request.uploaded = True
-            picture_request = form.save()
-            picture_request.image = request.FILES.get('image')
-            return redirect('PictureHandler:picture_handler_encryptor', pk)
