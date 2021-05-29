@@ -2,12 +2,16 @@ from django.forms import fields
 from django.shortcuts import  redirect
 from core.models import *
 from core.forms import *
+from .forms import *
+from .models import *
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View
 from .utils import *
+from django.shortcuts import render, get_object_or_404, redirect
+
 
 def clerk_home(request):
     return Page_maker.make_page(request, "clerk/clerk_home.html")
@@ -81,6 +85,43 @@ def select_customer(request):
     else:
         form = FindCustomerForm()
         return Page_maker.make_page(request, "clerk/select_customer.html", {"form": form})
+
+
+#Create
+@login_required
+def picture_request_create(request):
+    user = request.user
+    if request.method == "POST":
+        form = PictureRequestForm(request.POST)
+        if form.is_valid():
+            picture = form.save()
+            picture.clerk = user
+            picture = form.save()
+            return redirect('Customer:customer_home')
+    else:
+        form = PictureRequestForm()
+        return render(request, "clerk/picture_request_create.html", {"form": form})
+
+
+def picture_request_list(request):
+    picture_request = PictureRequest.objects.filter(clerk=request.user)
+    context = {
+        "picture_request": picture_request,
+    }
+    print("already packed")
+    return render(request, "clerk/picture_request_list.html", context)
+
+
+def picture_download(request, pk):
+    picture_request = get_object_or_404(PictureRequest, pk=pk)
+    context = {
+        "picture_request": picture_request
+    }
+    return render(request, "clerk/picture_download.html", context)
+
+def picture_decryptor(request, pk):
+    return redirect("PictureHandler:picture_handler_decryptor", pk)
+
 
 
 class select_document_view(View):
