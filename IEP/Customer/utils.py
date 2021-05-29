@@ -1,6 +1,6 @@
 from django.contrib import messages
 from core.models import User
-from Clerk.models import PictureRequest
+from core.models import PictureRequest
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
