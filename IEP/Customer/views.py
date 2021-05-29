@@ -65,3 +65,26 @@ def logout(request):
 def customer_home(request):
     return PageMaker.get_page(request, template_name="customer/customer_home.html")
 
+#Show All List
+#Show All List
+@login_required
+def customer_confirm(request):
+    picture_request = DBConnector.get_request_all(request)
+    context = {
+        'picture_request' : picture_request,
+        'request_user' : request.user
+    }
+    if(picture_request):
+        AlarmOperator.activate(request, "요청이 있습니다.")
+    return PageMaker.get_page(request, "customer/customer_confirm.html", context)
+
+#READ
+def customer_read(request, pk):
+    picture_request = get_object_or_404(PictureRequest, pk=pk)
+    context= {
+        'picture_request' : picture_request
+    }
+    return PageMaker.get_page(request, template_name="customer/customer_read.html", context=context)
+
+
+#Update
