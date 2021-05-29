@@ -2,10 +2,11 @@ from Crypto.Cipher import AES
 import PIL.Image
 import os
 import hashlib
-from Clerk.models import PictureRequest
+from core.models import PictureRequest
 from IEP.settings import BASE_DIR
 from IEP.settings import MEDIA_ROOT
 import io
+from django.shortcuts import render, get_object_or_404, redirect
 
 class PictureHandler:
     key = None

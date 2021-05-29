@@ -65,3 +65,38 @@ def logout(request):
 def customer_home(request):
     return PageMaker.get_page(request, template_name="customer/customer_home.html")
 
+#Show All List
+#Show All List
+@login_required
+def customer_confirm(request):
+    picture_request = DBConnector.get_request_all(request)
+    context = {
+        'picture_request' : picture_request,
+        'request_user' : request.user
+    }
+    if(picture_request):
+        AlarmOperator.activate(request, "요청이 있습니다.")
+    return PageMaker.get_page(request, "customer/customer_confirm.html", context)
+
+#READ
+def customer_read(request, pk):
+    picture_request = get_object_or_404(PictureRequest, pk=pk)
+    context= {
+        'picture_request' : picture_request
+    }
+    return PageMaker.get_page(request, template_name="customer/customer_read.html", context=context)
+
+
+#Update
+def picture_upload(request, pk):
+    picture_request = get_object_or_404(PictureRequest, pk=pk)
+    clerk = picture_request.clerk
+    customer = request.user
+    if request.method == 'POST':
+        form = Discrimiator.get_form_POST(request, instance=picture_request)
+        if form.is_valid():
+            Upload.upload(request, picture_request, clerk, customer, form, pk)
+            AlarmOperator.activate(request, "사진 전송이 완료되었습니다.")
+    else:
+        form = Discrimiator.get_form_GET(instance=picture_request)
+    return render(request, 'Customer/picture_upload.html', {'form': form, 'pk':pk})
