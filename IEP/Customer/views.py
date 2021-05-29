@@ -88,3 +88,20 @@ def customer_read(request, pk):
 
 
 #Update
+def picture_upload(request, pk):
+    picture_request = get_object_or_404(PictureRequest, pk=pk)
+    clerk = picture_request.clerk
+    customer = request.user
+    if request.method == 'POST':
+        form = PictureRequestForm(request.POST, request.FILES, instance=picture_request)
+        if form.is_valid():
+            picture_request.clerk = clerk
+            picture_request.customer = customer
+            picture_request.uploaded = True
+            picture_request = form.save()
+            picture_request.image = request.FILES.get('image')
+
+            return redirect('PictureHandler:picture_handler_encryptor', pk)
+    else:
+        form = PictureRequestForm(instance=picture_request)
+    return render(request, 'Customer/picture_upload.html', {'form': form, 'pk':pk})
