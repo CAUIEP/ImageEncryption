@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href='{% static "css/clerk/style.css"%}'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'core/Group 5.svg' %}">
+</head>
+<body>
+    <div>
+        <a href="{% url 'home' %}" class='menu'>home</a>
+        <a href="{% url 'Clerk:clerk_home' %}" class='menu'>clerk</a>
+        <a href="{% url 'Customer:customer_home' %}" class='menu'>customer</a>
+    </div>
+
+    <h1>Login page</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <div>
+            {% for field in form %}
+            <p>
+                <input type="{{ field.field.widget.input_type }}" name="{{field.name}}" class='clerkLoginForm' placeholder="{{field.label}}">
+            </p>
+        
+            {% endfor %}
+            <input type="submit" value="로그인" id='loginSubmit'>
+
+        </div>
+    </form>
+    {{error}}
+    
+</body>
+</html>
+
