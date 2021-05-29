@@ -93,15 +93,10 @@ def picture_upload(request, pk):
     clerk = picture_request.clerk
     customer = request.user
     if request.method == 'POST':
-        form = PictureRequestForm(request.POST, request.FILES, instance=picture_request)
+        form = Discrimiator.get_form_POST(request, instance=picture_request)
         if form.is_valid():
-            picture_request.clerk = clerk
-            picture_request.customer = customer
-            picture_request.uploaded = True
-            picture_request = form.save()
-            picture_request.image = request.FILES.get('image')
-
-            return redirect('PictureHandler:picture_handler_encryptor', pk)
+            Upload.upload(request, picture_request, clerk, customer, form, pk)
+            AlarmOperator.activate(request, "사진 전송이 완료되었습니다.")
     else:
-        form = PictureRequestForm(instance=picture_request)
+        form = Discrimiator.get_form_GET(instance=picture_request)
     return render(request, 'Customer/picture_upload.html', {'form': form, 'pk':pk})
