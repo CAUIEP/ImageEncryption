@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/clerk/style.css"%}'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'core/Group 5.svg' %}">
+
+    <title>Clerk</title>
+</head>
+<body>
+    <div>
+        <a href="{% url 'home' %}" class='menu'>home</a>
+        <a href="{% url 'Clerk:clerk_home' %}" class='menu'>clerk</a>
+        <a href="{% url 'Customer:customer_home' %}" class='menu'>customer</a>
+    </div>
+    
+    {% if user.is_active %}
+        <h1>Hello, clerk!</h1>
+        <p>원하는 서비스를 선택하십시오.</p>
+        <div>
+            <p>
+                <button type="button" onclick="location.href='{% url 'Clerk:select_customer' %}'" class='clerkService'>
+                    고객에게 서류 사진 요청
+                </button> 
+            </p>
+            <p>
+                <button type="button" onclick="location.href=''" class='clerkService'>
+                    요청된 서류 제출 확인
+                </button>
+            </p>
+        </div>
+        <div>
+        <a href="{% url 'Clerk:logout' %}">logout</a>
+        </div>
+
+        {% if messages %}        
+            {% for message in messages %}
+                <script>alert("{{ message}}");</script>
+            {% endfor %}
+        {% endif %}
+
+    {% else %}
+
+        <h1>Hello, clerk!</h1>
+        <p>로그인 혹은 회원가입 후 서비스 이용이 가능합니다.</p>
+        <div>
+            <button type="button" onclick="location.href='{% url 'Clerk:login' %}'" id='login'>
+                login
+            </button> 
+            <button type="button" onclick="location.href='{% url 'Clerk:signup' %}'" id='signup'>
+                signup
+            </button>
+        </div>
+
+    {% endif %}
+
+
+</body>
+</html>
