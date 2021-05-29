@@ -1,5 +1,5 @@
 from django import forms
-from .models import *
+from core.models import *
 
 
 class FindCustomerForm(forms.Form):
