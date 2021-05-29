@@ -16,3 +16,12 @@ def send_to_encryptor(request, pk):
     picture_request.save()
 
     return redirect('Customer:customer_home')
+
+
+def picture_delete(request, pk):
+
+    picture_request = get_object_or_404(PictureRequest, pk=pk)
+
+    picture_request.delete()
+
+    return redirect("Clerk:clerk_home")
