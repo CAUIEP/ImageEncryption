@@ -19,8 +19,5 @@ def send_to_encryptor(request, pk):
 
 
 def picture_delete(request, pk):
-
-    picture_request = get_object_or_404(PictureRequest, pk=pk)
-    picture_request.delete()
-
+    DataBaseConnector.delete_complete_request(pk)
     return redirect("Clerk:clerk_home")
