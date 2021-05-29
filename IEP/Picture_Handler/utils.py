@@ -140,3 +140,25 @@ class PictureDecryptor:
         print(decrypt_file)
 
         return decrypt_file
+
+
+
+class DataBaseConnector:
+    @classmethod
+    def get_send_info(cls, request_info):
+        try:
+            information = PictureRequest.objects.get(pk = request_info.pk)
+        except:
+            return False
+        return information
+
+    @classmethod
+    def store(cls, request_info, file):
+        picture_request = get_object_or_404(PictureRequest, pk = request_info.pk)
+        picture_request.image = file
+        picture_request.save()
+
+    @classmethod
+    def delete_complete_request(cls, pk):
+        picture_request = get_object_or_404(PictureRequest, pk = pk)
+        picture_request.delete()
