@@ -7,13 +7,10 @@ from IEP.settings import MEDIA_ROOT
 
 # Create your views here.
 
+
 def send_to_encryptor(request, pk):
     picture_request = get_object_or_404(PictureRequest, pk=pk)
-    #target = PictureEncryptor.encrypt_image(os.path.join(".", MEDIA_ROOT, picture_request.image.url), 1)
-    target = PictureEncryptor.encrypt_image(picture_request.image.url, 1)
-
-    picture_request.image = target
-    picture_request.save()
+    PictureHandler.encrypt(picture_request)
 
     return redirect('Customer:customer_home')
 
