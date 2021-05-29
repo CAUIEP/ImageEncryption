@@ -7,6 +7,37 @@ from IEP.settings import BASE_DIR
 from IEP.settings import MEDIA_ROOT
 import io
 
+class PictureHandler:
+    key = None
+    file = None
+
+    @classmethod
+    def flush(cls):
+        cls.key = None
+        cls.file = None
+
+    @classmethod
+    def need_a_key(cls, request_info):
+        cls.key = KeyHandler.key_generate(request_info)
+
+    @classmethod
+    def encrypt(cls, request_info):
+        cls.need_a_key(request_info)
+        if cls.key != False:
+            file = PictureEncryptor.encrypt_image(request_info.image.url, cls.key)
+
+        cls.flush()
+        DataBaseConnector.store(request_info, file)
+    
+    @classmethod
+    def decrypt(cls, request_info):
+        cls.need_a_key(request_info)
+        if cls.key != False:
+            file = PictureDecryptor.decrypt_image(request_info.image, cls.key)
+        cls.flush()
+        return file
+
+
 class PictureEncryptor:
     @classmethod
     def encrypt_image(cls, image, key):
