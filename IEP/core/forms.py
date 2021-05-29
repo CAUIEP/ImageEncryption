@@ -16,3 +16,9 @@ class LoginForm(forms.ModelForm):
         model = User
         fields = ["username", "password"]
         widgets = {"password": forms.PasswordInput}
+
+
+class PictureRequestForm(forms.ModelForm):
+    class Meta:
+        model = PictureRequest
+        fields = ['customer', 'image']
