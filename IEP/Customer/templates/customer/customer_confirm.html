@@ -1,4 +1,4 @@
-{% load static %}
+{%load static%}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/customer/customer_confirm.css' %}">
+    <link rel="stylesheet" href="/static/customer/css/customer_home.css">
     <title>Customer Home</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Customer Confirm</a>
+          <a class="navbar-brand" href="#"><span><img src="{%static 'Group 5.svg' %}" alt=""></span></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -32,29 +32,29 @@
         </div>
       </nav>
 
-      {% if messages %}
-      {% for message in messages %}
-          <script type="text/javascript">
-            var message = "{{ message.message }}"
-            alert(message);
-          </script>
-      {% endfor %}
-      {% endif %}
+    
 
     {% for request in picture_request %}
 
-        <div class="card">
+    {% if messages %}
+    {% for message in messages %}
+        <script type="text/javascript">
+          var message = "{{document.document_name}} " + "{{ message.message }}"
+          alert(message);
+        </script>
+    {% endfor %}
+    {% endif %}
 
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <img src="https://img-premium.flaticon.com/png/512/633/633779.png?token=exp=1622274374~hmac=cbed1e97685344ee4586a1373ff40ee7"
-                style="float:left; margin-right:20px; width:50px; height:50px;"/>
-              <h5 class="card-title">TO. {{request.customer}}</h5>
+              <h5 class="card-title">{{request.customer}}</h5>
               <p class="card-text">You have the request from the {{request.clerk}}</p>
-              <a href="{% url 'Customer:customer_read' request.pk %}" class="btn btn-primary b_color">Go to Request</a>
+              <a href="{% url 'Customer:customer_read' request.pk %}" class="btn btn-primary">Go to Request</a>
             </div>
           </div>
-          <br>
-      
+        
+
     {% endfor %}
 
 

@@ -66,9 +66,7 @@
           function imageCheck(){
             var fileCheck = document.getElementById("image").value;
             if(!fileCheck){
-              window.location.href = '{% url "Customer:picture_upload" pk %}'
               alert("Please Upload the file");
-              
             }
           }
         </script>
