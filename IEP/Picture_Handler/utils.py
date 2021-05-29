@@ -56,7 +56,19 @@ class KeyHandler:
         else:
             return cls.send_key(False)
 
-
+class Checker:
+    #class diagram 에서 request_id 를 아마 삭제해도 될 것 같음
+    @classmethod
+    def get_request_info(cls, request_id):
+        return DataBaseConnector.get_send_info(request_id)
+    
+    @classmethod
+    def is_valid(cls, request_id):
+        request_info = cls.get_request_info(request_id)
+        if request_info:
+            if request_info.customer and request_info.clerk and request_info.created_at:
+                return True
+        return False
 
 class PictureEncryptor:
     @classmethod
