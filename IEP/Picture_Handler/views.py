@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from Clerk.forms import PictureRequestForm
-from Clerk.models import PictureRequest
+from core.forms import PictureRequestForm
+from core.models import PictureRequest
 from .utils import *
 from IEP.settings import BASE_DIR
 from IEP.settings import MEDIA_ROOT
