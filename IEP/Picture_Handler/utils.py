@@ -38,6 +38,26 @@ class PictureHandler:
         return file
 
 
+
+class KeyHandler:
+    @classmethod
+    def send_key(cls, key):
+        if key:
+            return key
+        else:
+            return False
+
+    @classmethod
+    def key_generate(cls, request_info):
+        if Checker.is_valid(request_info):
+            #generating key
+            key = request_info.customer.id + request_info.clerk.id + int(request_info.created_at.toordinal())
+            return cls.send_key(str(key))
+        else:
+            return cls.send_key(False)
+
+
+
 class PictureEncryptor:
     @classmethod
     def encrypt_image(cls, image, key):
