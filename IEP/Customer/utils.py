@@ -13,3 +13,12 @@ class AlarmOperator:
     @classmethod
     def activate(cls, request, message):
         return messages.add_message(request, messages.INFO, message)
+
+class DBConnector:
+    @classmethod
+    def get_request_all(cls, request):
+        return PictureRequest.objects.filter(customer=request.user, uploaded = False)
+
+    @classmethod
+    def get(cls):
+        return
