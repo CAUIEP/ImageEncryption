@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models 
 from uuid import uuid4
 from datetime import datetime
+from Clerk.models import Document
 import os
 
 class User(AbstractUser):    
@@ -38,5 +39,6 @@ class PictureRequest(models.Model):
     clerk = models.ForeignKey(User, related_name="request_clerk", on_delete=models.CASCADE, blank=True, null=True)
     customer = models.ForeignKey(User, related_name="request_customer", on_delete=models.CASCADE, blank=True, null=True)
     image = models.FileField(upload_to=uuid_name_upload_to, blank=True, verbose_name="고객 사진")
+    document = models.ForeignKey(Document, related_name = "request_document", on_delete=models.CASCADE, blank=True, null=True)
     uploaded = models.BooleanField(default=False)
     created_at = models.DateField(auto_now_add=True)

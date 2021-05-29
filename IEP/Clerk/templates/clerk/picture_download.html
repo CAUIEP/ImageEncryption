@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Picture Download</h1>
+
+    {{ picture_request.clerk }}
+    {{ picture_request.customer }}
+
+    {{ picture_request.image.url }}
+
+    <a href="{% url 'Clerk:send_to_decryptor' picture_request.id %}">DOWNLOAD</a>
+
+    <br><br>
+
+    <a href="{% url 'Clerk:picture_request_list' %}">리스트 돌아가기!</a>
+    <p>반드시 다운로드를 받으신 다음에 홈으로 돌아가기를 눌러주세요! 그렇지 않으면 파일이 삭제됩니다.</p>
+
+
+</body>
+</html>

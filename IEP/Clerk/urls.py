@@ -14,4 +14,7 @@ urlpatterns = [
     path("signup/", sign_up, name="signup"),
     path("login/", login, name="login"),
     path("logout/", logout, name="logout"),
+    path('rlist/', picture_request_list, name="picture_request_list"),
+    path('download/<int:pk>', picture_download, name="picture_download"),
+    path('decryptor/<int:pk>', picture_decryptor, name="send_to_decryptor")
 ]

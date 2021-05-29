@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <a href="{{ picture_request.image.url }}" download>이미지 다운로드</a>
+
+    <br><br>
+
+    <a href="{% url 'PictureHandler:picture_delete' picture_request.id %}">홈으로 돌아가기!</a>
+    <p>반드시 다운로드를 받으신 다음에 홈으로 돌아가기를 눌러주세요! 그렇지 않으면 파일이 삭제됩니다.</p>
+
+
+</body>
+</html>

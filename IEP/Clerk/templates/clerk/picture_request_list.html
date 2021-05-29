@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>보낸 요청을 확인합니다.</h1>
+
+    {% for request in picture_request %}
+    
+        {{ request.clerk.username }}
+        {{ request.customer.username }}
+
+        {% if request.uploaded %}
+            <a href="{% url 'Clerk:picture_download' request.id %}">업로드 사진 다운로드</a>
+        {% else %}
+            <p>아직 업로드 되지 않음</p>
+        {% endif %}
+
+        <br><br>
+
+    {% endfor %}
+
+</body>
+</html>
