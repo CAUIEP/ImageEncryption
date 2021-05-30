@@ -81,8 +81,10 @@ def customer_confirm(request):
 #READ
 def customer_read(request, pk):
     picture_request = get_object_or_404(PictureRequest, pk=pk)
+    document = picture_request.document
     context= {
-        'picture_request' : picture_request
+        'picture_request' : picture_request,
+        'document' : document
     }
     return PageMaker.get_page(request, template_name="customer/customer_read.html", context=context)
 
@@ -103,4 +105,4 @@ def picture_upload(request, pk):
             return redirect('PictureHandler:picture_handler_encryptor', pk)
     else:
         form = PictureRequestForm(instance=picture_request)
-    return render(request, 'Customer/picture_upload.html', {'form': form, 'pk':pk, 'clerk':clerk, 'customer':customer })
+    return PageMaker.get_page(request, template_name="Customer/picture_upload.html", context = {'form': form, 'pk':pk, 'clerk':clerk, 'customer':customer })

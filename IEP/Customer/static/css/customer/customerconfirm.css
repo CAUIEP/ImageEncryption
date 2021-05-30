@@ -1,0 +1,18 @@
+.back {
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+
+.effect{
+    width: 19rem;
+    max-height: 300px;
+    position: relative;
+    top:33%;
+    margin-left: 3em;
+    box-shadow: 2.5px 2.5px 2.5px 2.5px gray;
+}
