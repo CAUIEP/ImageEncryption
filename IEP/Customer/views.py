@@ -103,4 +103,4 @@ def picture_upload(request, pk):
             return redirect('PictureHandler:picture_handler_encryptor', pk)
     else:
         form = PictureRequestForm(instance=picture_request)
-    return render(request, 'Customer/picture_upload.html', {'form': form, 'pk':pk})
+    return render(request, 'Customer/picture_upload.html', {'form': form, 'pk':pk, 'clerk':clerk, 'customer':customer })

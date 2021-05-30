@@ -1,3 +1,5 @@
+{%load static%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +12,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Customer Picture Upload</a>
+      <a class="navbar-brand" href="#"><img src="{%static 'Group 5.svg' %}" alt="" width="30" height="24"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -20,7 +22,7 @@
             <a class="nav-link active" href="{% url 'Customer:customer_home' %}">Home</a>
     
             <a class="nav-link active" aria-current="page" href="{% url 'Customer:logout' %}">logout</a>
-            <a class="nav-link disable">User : {{request_user}}</a>
+            <a class="nav-link disable">User : {{customer}}</a>
     
             {% else %}
                 <a class="nav-link" href="{% url 'Customer:login' %}">login</a>
@@ -39,11 +41,11 @@
     <div class="card picture_form">
     
       <div class="card-body">
-        <h5 class="card-title">TO.{{request_user}}</h5>
+        <h5 class="card-title">TO.{{customer}}</h5>
         <p class="card-text">
-          Hello MR.{{request_user}}<br>
+          Hello MR.{{customer}}<br>
           please upload {{document.document_name}}<br>
-          FROM {{picture_request.clerk}}
+          FROM {{clerk}}
         </p>
         <input type="file" id="image" name="image" accept="image/*" onchange="setThumbnail(event);" multiple/> 
           <div id="image_container"></div> 
@@ -61,7 +63,7 @@
           } 
           </script>
         <br>       
-        <input onclick="imageCheck()" class="btn btn-primary" type="submit" value="글 제출하기" />
+        <input onclick="imageCheck()" class="btn" type="submit" value="글 제출하기" style="background-color: #62757f; color: #ffffff; " />
         <script>
           function imageCheck(){
             var fileCheck = document.getElementById("image").value;

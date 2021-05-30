@@ -9,40 +9,56 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <link rel="stylesheet" href="{%static 'customer/css/customerhome.css' %}">
+        <link rel="stylesheet" href="{% static 'css/customer/customerhome.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com"> 
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">   
     </head>
     <body>
-      <div class="container-fluid" style="display: flex; flex-direction: column;">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Customer</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                  {% if user.is_active %}
-                  <a class="nav-link active" href="{% url 'Customer:logout' %}">logout</a>
-          
-                  <a class="nav-link active" aria-current="page" href="{% url 'Customer:customer_confirm' %}">요청 확인하기</a>
-  
-                  {% else %}
-                      <a class="nav-link" href="{% url 'Customer:login' %}">login</a>
-                      <a class="nav-link" href="{% url 'Customer:signup' %}">sign up</a>
-                  {% endif %}
-              </div>
-            </div>
-          </div>
-        </nav>
-  
+      
+    <div class = "background-color content" style="height: 100vh">
+
+      <div class="container-fluid title_content" style="display: flex; flex-direction: column;">
+
+        <h4 class = "hcolor"> WE ARE CAUIEP </h4><br>
+        <h1 class = "hcolor">" WELCOME CUSTOMERS "</h1>
+
+      </div>
+
         {% if user.is_active %}
 
         <div class="d-grid gap-2 col-2 mx-auto">
-          <button class="btn" type="button" Onclick = "location.href= '{% url 'Customer:customer_confirm' %}'" style="background-color: #62757f; color: #ffffff; ">요청확인</button>
+          <button class="btn" type="button" Onclick = "location.href= '{% url 'Customer:customer_confirm' %}'" style="background-color: white; font-weight : bold; color:black; border-color : black;">CHECK REQUEST</button>
         </div>
-          
+        <br>
+        <div class="d-grid gap-2 col-2 mx-auto">
+          <button class="btn" type="button" Onclick = "location.href= '{% url 'Customer:logout' %}'" style="background-color: #62757f; font-weight : bold; color:white; border-color : black;">LOGOUT</button>
+        </div>
+
+
+        {% else %}
+          <div class="whole_content">
+            <div class="content_left_side" >
+              <div class="pp">
+                <p>⌜ Our service is to secure <br>the transmission of personal information. The transferred pictures <br> encrypted by AES and delivered to the bank. ⌟</p><br>
+                <p>👨‍💻MEMBER</p>
+                <p class="member">CUSTOMER: 임혜정, 정도현</p>
+                <p class="member">CLERK: 방수원, 장영욱</p>
+                <p class="member">PICTURE ENCRYPTION: 김영빈, 박희수</p>
+                <p></p>
+              </div>
+            </div>
+                
+            <div class="content_right_side" >
+              <div class = "bb">
+                <button type="button" class="btn btn-secondary btn-lg bcolor " onclick="location.href = '{% url 'Customer:login' %}'">LOGIN</button>
+              </div>
+              <div class="bb">
+                <button type="button" class="btn btn-secondary btn-lg bcolor " onclick="location.href = '{% url 'Customer:signup' %}'" >SIGNUP</button>
+              </div>
+            </div>
+          </div>          
         {% endif %}
-      </div>
+    </div>
        
         
         <script src="" async defer></script>
