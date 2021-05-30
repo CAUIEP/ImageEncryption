@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="{%static 'css/customer/customer_confirm.css' %}">
+    <link rel="stylesheet" href="{%static 'css/customer/customerconfirm.css' %}">
     <title>Customer Home</title>
 </head>
 <body>
@@ -34,29 +34,27 @@
       </div>
     </nav>
   </header>
+  
+  {% if messages %}
+        {% for message in messages %}
+            <script type="text/javascript">
+              var message = "{{ message.message }}"
+              alert(message);
+            </script>
+        {% endfor %}
+  {% endif %}
     
-      <div class="container-fluid back">
+  <div class="container-fluid back">
     {% for request in picture_request %}
-
-    {% if messages %}
-      {% for message in messages %}
-          <script type="text/javascript">
-            var message = "{{ message.message }}"
-            alert(message);
-          </script>
-      {% endfor %}
-    {% endif %}
-        
-          <div class="card" style="width: 18rem;">
-            <img src="{%static 'icon-people-circle.svg'%}" class="card-img-top" alt="" width="100" height="100">
+          <div class="card effect" >
+            <img src="{%static 'icon-people-circle.svg'%}" class="card-img-top" alt="" width="100" height="100" style="margin-top: 1em">
             <div class="card-body">
-              <h5 class="card-title">HEY, {{request.customer}}</h5>
-              <p class="card-text">You have the request from the {{request.clerk}}</p>
-              <a href="{% url 'Customer:customer_read' request.pk %}" class="btn" style="background-color: #62757f; color: #ffffff; ">Go to Request</a>
+              <h5 class="card-title" style="text-align: center;">HEY, {{request.customer}}</h5><br>
+              <p class="card-text"  >You have the request from the {{request.clerk}}</p>
+              <a href="{% url 'Customer:customer_read' request.pk %}" class="btn" style="background-color: #62757f; color: #ffffff; margin-left:28%;">Go to Request</a>
             </div>
           </div>
     {% endfor %}
-
   </div>
 </body>
 </html>
