@@ -1,0 +1,108 @@
+.hcolor{
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color : white;
+    font-size: 6em;
+
+}
+
+.bcolor {
+    background-color : white; 
+    color : black;
+    font-weight : bold;
+    border-color : black;
+    font-size: 1rem;
+    font-style: oblique;
+}
+
+.bcolor:hover {
+    background-color: #cfd8dc;
+}
+
+.member {
+    margin-bottom: 0;
+ 
+}
+
+.pp{
+    color : white;
+    font-style: oblique;
+    text-align: center;
+    position: relative;
+    left: -20%;
+}
+
+
+.background-color{
+
+    background-image: url("https://library.gabia.com/wp-content/uploads/2020/10/dbsecurity_1.jpeg");
+    background-size: cover;
+ 
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    opacity: 0.9;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bb {
+    width: 25%;
+    height: 5%;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+
+    position: relative;
+    right: -20%;
+}
+
+.whole_content {
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+}
+
+.title_content {
+    width: 100%;
+    height: 40%;
+    margin-top: 15px;
+
+}
+
+.content_left_side {
+    float:left;
+    width: 50%;
+    height: 10%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+    position: relative;
+    top: 15%;
+}
+
+.content_right_side {
+    float: right;
+    width: 50%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+
+    position: relative;
+    top: 10%;
+
+  
+}
+
+
