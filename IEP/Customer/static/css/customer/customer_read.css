@@ -1,0 +1,13 @@
+.back {
+    height:100vh; 
+    display: flex; 
+    justify-content: center;
+}
+
+.card_effect{
+    max-width: 540px;
+     max-height: 300px; 
+     position: relative; 
+     top: 33%;
+     box-shadow: 2.5px 2.5px 2.5px 2.5px gray;
+}
