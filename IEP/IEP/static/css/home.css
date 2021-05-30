@@ -13,18 +13,27 @@
 }
 
 .customer:hover {
-    background: red;
+    background: #c1d5e0;
+    color: #62757f;
 }
 
 .clerk:hover {
-    background: blue;
+    background: #c1d5e0;
+    color:#62757f;
 }
 
 .cover {
+    text-align:center;
+}
+
+.main__body {
+    width: 100vh;
+    height: 100vh;
     display:flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 auto;
 }
