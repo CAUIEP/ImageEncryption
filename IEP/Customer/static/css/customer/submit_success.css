@@ -1,0 +1,21 @@
+.main__body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.title {
+}
+
+.home__button {
+    display:inline-block;
+    width: 200px;
+    height: 20px;
+    color: white;
+    background: #9ea7aa;
+    text-decoration: none;
+    border-radius: 8px;
+}
