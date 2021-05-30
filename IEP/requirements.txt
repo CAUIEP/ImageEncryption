@@ -1,5 +1,0 @@
-django==3.2.3
-Pillow==8.2.0
-pycrypto==2.6.0
-matplotlib==3.4.2
-django-bootstrap-v5
