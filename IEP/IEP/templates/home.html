@@ -1,21 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePage</title>
-    <link rel="stylesheet" href="/static/css/home.css">
-</head>
-<body>
+{% load static %}
 
-    <h1>Hello World</h1>
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>IEP</title>
 
-    <br>
-    <a href="{% url "Clerk:clerk_home" %}">Clerk</a>
-
-    <br><br>
-    <a href="{% url "Customer:customer_home" %}">Customer</a>
+    <link rel="stylesheet" href="{% static '/css/home.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     
-</body>
+
+    
+    <!-- Custom styles for this template -->
+  </head>
+  <body>
+    
+        <div class="cover">
+            <main class="px-3">
+                <h1>IEP: 안전한 사진 전송</h1>
+                <p class="lead">IEP는 안전한 사진 전송을 위한 서비스 입니다.<br>
+                    고객이라면 고객을, 은행원이라면 은행원을 선택해 주세요.
+                </p>
+                <p class="lead">
+                
+                    <a href="{% url 'Customer:customer_home' %}" class="customer btn-selection">고객</a>
+                    <a href="{% url 'Clerk:clerk_home' %}" class="clerk btn-selection">은행원</a>
+
+                </p>
+            </main>
+
+            <footer class="mt-auto text-white-50">
+                <p>Covered by <a href="https://www.https://github.com/CAUIEP/ImageEncryption" class="text-white">IEP</a>.</p>
+            </footer>
+        </div>
+    
+  </body>
 </html>
