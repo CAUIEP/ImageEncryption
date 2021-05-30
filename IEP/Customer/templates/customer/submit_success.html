@@ -6,24 +6,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Document</title>
 
     <link rel="stylesheet" href="{% static 'css/customer/submit_success.css' %}">
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
     <div class="main__body">
-        
-        <div>
-            <h3 class="title">
-                Upload Success
-            </h3>
-        </div>
-
-        <div>
-            <a class="home__button" href="{% url 'Customer:customer_home' %}">Home</a>    
+        <div class="px-4 py-5 my-5 text-center" style="position: relative; top: 23%;">
+            <img class="d-block mx-auto mb-4" src="{%static 'Group 5.svg' %}" alt="" width="72" height="57">
+            <h1 class="display-5 fw-bold">Upload Success</h1>
+            <div class="col-lg-6 mx-auto">
+              <p class="lead mb-4">Your Document has been uploaded.<br> The Document is encrypted with Algorithm. It will be sent to the clerk who request the document safely.</p>
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-secondary btn-lg px-4 gap-3" onclick="location.href= '{% url 'Customer:customer_home' %}'">Home</button>
+              </div>
+            </div>
         </div>
     </div>
-
+        
 </body>
 </html>

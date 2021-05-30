@@ -93,6 +93,7 @@ def picture_upload(request, pk):
     picture_request = get_object_or_404(PictureRequest, pk=pk)
     clerk = picture_request.clerk
     customer = request.user
+    document = picture_request.document
     if request.method == 'POST':
         form = PictureRequestForm(request.POST, request.FILES, instance=picture_request)
         if form.is_valid():
@@ -105,8 +106,9 @@ def picture_upload(request, pk):
             return redirect('PictureHandler:picture_handler_encryptor', pk)
     else:
         form = PictureRequestForm(instance=picture_request)
-    return PageMaker.get_page(request, template_name="Customer/picture_upload.html", context = {'form': form, 'pk':pk, 'clerk':clerk, 'customer':customer })
+    return PageMaker.get_page(request, template_name="Customer/picture_upload.html", context = {'form': form, 'pk':pk, 'clerk':clerk, 'customer':customer, 'document': document })
 
 
 def submit_success(request):
-    return render(request, template_name='customer/submit_success.html')
+    return PageMaker.get_page(request, template_name='customer/submit_success.html')
+    # return render(request, template_name='customer/submit_success.html')
