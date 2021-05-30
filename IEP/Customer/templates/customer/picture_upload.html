@@ -56,6 +56,8 @@
               reader.onload = function(event) { 
                 var img = document.createElement("img"); 
                 img.setAttribute("src", event.target.result); 
+                img.setAttribute("width", 600);
+                img.setAttribute("height", 600);
                 document.querySelector("div#image_container").appendChild(img); 
               }; 
               console.log(image); reader.readAsDataURL(image); 
