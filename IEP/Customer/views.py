@@ -106,3 +106,7 @@ def picture_upload(request, pk):
     else:
         form = PictureRequestForm(instance=picture_request)
     return PageMaker.get_page(request, template_name="Customer/picture_upload.html", context = {'form': form, 'pk':pk, 'clerk':clerk, 'customer':customer })
+
+
+def submit_success(request):
+    return render(request, template_name='customer/submit_success.html')

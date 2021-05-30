@@ -11,4 +11,7 @@ urlpatterns = [
     path("signup/", sign_up, name="signup"),
     path("login/", login, name="login"),
     path("logout/", logout, name="logout"),
+
+    #new
+    path('success/', submit_success, name="submit_success"),
 ]

@@ -12,7 +12,7 @@ def send_to_encryptor(request, pk):
     picture_request = get_object_or_404(PictureRequest, pk=pk)
     PictureHandler.encrypt(picture_request)
 
-    return redirect('Customer:customer_home')
+    return redirect('Customer:submit_success')
 
 def send_to_decryptor(request, pk):
     picture_request = get_object_or_404(PictureRequest, pk=pk)
