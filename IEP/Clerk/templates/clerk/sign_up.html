@@ -1,0 +1,56 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/clerk/style.css"%}'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
+    <title>sign_up</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'core/Group 5.svg' %}">
+</head>
+<body>
+{% if user.is_authenticated %}
+<script>
+    alert("로그인 상태입니다. 로그아웃 후 이용해주세요.");
+    history.back();
+</script>
+{% else %}
+    <div>
+    <a href="{% url 'home' %}" class='menu'>| Home |</a>
+    <a href="{% url 'Clerk:signup' %}" class='menu'>Sign up</a>
+    <a href="{% url 'Clerk:login' %}" class='menu'>Log in</a>
+	{% endif %}
+    </div>
+    
+    <h1>Sign up page</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            {% for field in form %}
+
+            <p class='lineSpace'>
+                <label for="{{ field.id_for_label }}" class='signupLable'>{{ field.label }} |</label>
+                <!-- <input type="{{ field.field.widget.input_type }}" name="{{field.name}}" class='clerkSignupForm' placeholder=""> -->
+                {{field}}
+            <br>
+            </p>
+            {% endfor %}
+        </div>
+
+        <span class='center'>
+
+        <div>
+            <button type="submit" id='signupSubmit'>가입하기</button>
+        </div>
+        {{error}}
+
+
+    </form>
+
+</body>
+
+</html>

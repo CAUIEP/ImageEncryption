@@ -1,0 +1,39 @@
+
+
+.btn-selection {
+    display: inline-block;
+    margin: 10px;
+    border-radius: 5px;
+    width: 100px;
+    background: black;
+    height: 30px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+.customer:hover {
+    background: #c1d5e0;
+    color: #62757f;
+}
+
+.clerk:hover {
+    background: #c1d5e0;
+    color:#62757f;
+}
+
+.cover {
+    text-align:center;
+}
+
+.main__body {
+    width: 100vh;
+    height: 100vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 auto;
+}

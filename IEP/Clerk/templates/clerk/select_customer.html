@@ -1,0 +1,43 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/clerk/style.css"%}'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
+    <title>Select Customer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'core/Group 5.svg' %}">
+
+</head>
+<body>
+    <div>
+        <a href="{% url 'home' %}" class='menu'>| Home |</a>
+        <a href="{% url 'Clerk:signup' %}" class='menu'>Sign up</a>
+        <a href="{% url 'Clerk:logout' %}" class='menu'>Log out</a>
+    </div>
+
+    <h1>Request page</h1>
+    <div>
+
+        <p class='Text_20px'> 고객ID 
+        
+        </p>
+
+        <form action="{% url 'Clerk:select_customer' %}" method="POST">
+            {% csrf_token %}
+            <p> 
+                <input type="text" name="customer_name" id="customer_name">
+            </p>
+            <p>
+                <input type="submit" value="search" id='search'>
+            </p>
+        </form>
+
+    </div>
+
+</body>
+</html>
+

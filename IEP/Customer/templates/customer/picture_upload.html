@@ -1,0 +1,92 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Picture Upload</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="{%static 'Group 5.svg' %}" alt="" width="30" height="24"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            {% if user.is_active %}
+            <a class="nav-link active" href="{% url 'Customer:customer_home' %}">Home</a>
+    
+            <a class="nav-link active" aria-current="page" href="{% url 'Customer:logout' %}">logout</a>
+            <a class="nav-link disable">User : {{customer}}</a>
+    
+            {% else %}
+                <a class="nav-link" href="{% url 'Customer:login' %}">login</a>
+                <a class="nav-link" href="{% url 'Customer:signup' %}">sign up</a>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <form action="{% url "Customer:picture_upload" pk %}" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <div class="card picture_form">
+    
+      <div class="card-body">
+        <h5 class="card-title">TO.{{customer}}</h5>
+        <p class="card-text">
+          Hello MR.{{customer}}<br>
+          please upload {{document}}<br>
+          FROM {{clerk}}
+        </p>
+        <input type="file" id="image" name="image" accept="image/*" onchange="setThumbnail(event);" multiple/> 
+          <div id="image_container"></div> 
+          <script> 
+          function setThumbnail(event) { 
+            for (var image of event.target.files) { 
+              var reader = new FileReader(); 
+              reader.onload = function(event) { 
+                var img = document.createElement("img"); 
+                img.setAttribute("src", event.target.result); 
+                img.setAttribute("width", 600);
+                img.setAttribute("height", 600);
+                document.querySelector("div#image_container").appendChild(img); 
+              }; 
+              console.log(image); reader.readAsDataURL(image); 
+            } 
+          } 
+          </script>
+        <br>       
+        <input onclick="imageCheck()" class="btn" type="submit" value="글 제출하기" style="background-color: #62757f; color: #ffffff; " />
+        <script>
+          function imageCheck(){
+            var fileCheck = document.getElementById("image").value;
+            if(!fileCheck){
+              alert("Please Upload the file");
+            }
+          }
+        </script>
+      </div>
+    </div>
+    </form>
+
+    {% if messages %}
+    {% for message in messages %}
+        <script type="text/javascript">
+          var message = "{{document.document_name}} " + "{{ message.message }}"
+          alert(message);
+        </script>
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>
+
