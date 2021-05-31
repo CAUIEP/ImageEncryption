@@ -1,3 +1,6 @@
+![IEP](https://user-images.githubusercontent.com/62539910/120147757-2330a800-c222-11eb-9364-50c0de6cf496.jpg)
+
+
 # ImageEncryption
 2021-1 Software Engineering Team Project 
 source https://nevonprojects.com/image-encryption-using-aes-algorithm/
@@ -59,3 +62,195 @@ https://www.notion.so/e7b05fcf792b4be9a13e5264cabe0323
 
 ## Traceability Matrix For Use Case
 ![Untitled (7)](https://user-images.githubusercontent.com/62539910/115983801-6f167e80-a5de-11eb-803e-84c1f5c97e66.png)
+
+
+## Implementation
+
+### how to run in local
+```
+python manage.py runserver
+```
+### after run enter in local web
+```
+http://127.0.0.1:8000/
+```
+
+## Page Organization
+
+- /customer
+- /customer/confirm
+- /customer/detail/<int:pk>
+- /customer/upload/<int:pk>
+- /customer/signup
+- /customer/login
+- /customer/logout
+- /customer/success
+- /clerk
+- /clerk/siginup
+- /clerk/login
+- /clerk/logout
+- /clerk/create
+- /clerk/create/select/<str:customer_name>
+- /clerk/rlist
+- /clerk/download/<int:pk>
+- /clerk/decryptor/<int:pk>
+- /picturehandler/encrypt/<int:pk>
+- /picturehandler/decrypt/<int:pk>
+- /pincturehandler/picturedelete/<int:pk>
+
+
+## Use Case
+
+### UC1 회원가입
+- /customer
+로그인, 회원가입
+![home1]( https://user-images.githubusercontent.com/77912619/120096294-9a543680-c165-11eb-98a6-9570cfcee139.png)
+
+- /customer/signup
+회원가입 
+: username, email, password, password confirgation 을 통해 회원가입을 할 수 있다. customer 값은 True
+![signup1](https://user-images.githubusercontent.com/77912619/120097120-bfe33f00-c169-11eb-87f2-eb99d9ac32ae.png)
+
+
+- /clerk
+회원가입 및 로그인
+:Clerk가 회원가입과 로그인을 할 수 있는 홈 화면이다.
+![home1](https://user-images.githubusercontent.com/78745580/120116365-c9e55c00-c1c2-11eb-96e5-e3586ff80141.png)
+
+
+- /clerk/signup
+회원가입 
+: username, email, password, password confirgation 을 통해 회원가입을 할 수 있다. Clerk 계정이 생성된다.
+![signup](https://user-images.githubusercontent.com/78745580/120116412-fd27eb00-c1c2-11eb-85e0-10a3e509124c.png)
+
+
+
+### UC2 로그인
+- /customer/login
+로그인
+: username, password 을 입력받아 비교하여 로그인을 실행한다.
+![login 1](https://user-images.githubusercontent.com/77912619/120096387-1f3f5000-c166-11eb-8d1b-6251ab67c91d.png)
+
+
+- 로그인 완료 
+: 로그인이 성공하였을 경우 요청확인 or logout 을 할 수 있다
+![fhome2]( https://user-images.githubusercontent.com/77912619/120096409-4ac23a80-c166-11eb-94ac-f3b990824d49.png)
+
+
+- /customer/logout
+로그아웃 재확인
+: 로그아웃에 대한 재확인을 한다.
+![logout1]( https://user-images.githubusercontent.com/77912619/120096510-df2c9d00-c166-11eb-9797-b2d1879b9c3d.png)
+
+
+- /clerk/login
+로그인
+: username, password 을 입력받아 비교하고 Clerk인지 여부를 확인하여  Clerk계정으로만 로그인을 실행할 수 있다.
+![login](https://user-images.githubusercontent.com/78745580/120116438-1af55000-c1c3-11eb-9538-84d234920488.png)
+
+- 로그인 완료 
+: 로그인이 성공하였을 경우 요청생성 및 사진 다운로드를 위해 생성된 요청을 조회 할 수 있다
+![home2](https://user-images.githubusercontent.com/78745580/120116503-71fb2500-c1c3-11eb-9acf-2a81caa20dd0.png)
+
+- /clerk/logout
+로그아웃 재확인
+: 로그아웃 여부를 재확인을 한다.
+![logout](https://user-images.githubusercontent.com/78745580/120116539-935c1100-c1c3-11eb-8191-8f6147abd3db.png)
+
+
+
+### UC3 요청 확인
+- /customer/confirm
+요청확인 알람
+: check request를 누른후 해당 요청이 있을경우 알람을 받을 수 있다.
+![confirm 1]( https://user-images.githubusercontent.com/77912619/120096136-b1deef80-c164-11eb-9c3c-4b25e56db240.png)
+요청 확인 
+: 어떤 clerk로 부터 요청을 받았는지 확인할 수 있다.
+![confrim 2](https://user-images.githubusercontent.com/77912619/120096185-f4083100-c164-11eb-949d-e6794332f9bc.png)
+
+- /customer/detail/<int:pk>
+생성된 요청내용 확인
+: go to request 클릭 후 clear, customer, document 에 대한 값을 받는다.
+![upload 1](https://user-images.githubusercontent.com/77912619/120096219-20bc4880-c165-11eb-829b-d65eea8539f2.png)
+
+
+### UC4 사진 업로드
+- /customer/upload/<int:pk>
+사진 업로드 
+: Upload 클릭 후 파일을 선택하여 해당 사진을 업로드할 수 있다. 성공적으로 업로드를 했을 경우, uploaded 는 True 값으로 바뀐다.
+![upload 1](https://user-images.githubusercontent.com/77912619/120096524-f53a5d80-c166-11eb-85d5-a8710d6b3215.png)
+
+- /customer/success
+사진 업로드 성공
+: 성공적으로 업로드를 했을 경우, uploaded 는 True 값으로 바뀐다.
+![upload 2]( https://user-images.githubusercontent.com/77912619/120098650-1b192f80-c172-11eb-88f1-43dab46d0484.png)
+
+
+
+### UC5 사진 암호화 
+- /picturehandler/encrypt/<int:pk>
+사진 암호화 후 저장
+:Clerk가 원하는 customer에 Request 를 생성하면 DB에는 다음과 같이 Request가 생성 된다. 아직 customer가 사진을 업로드 하지 않았으므로 Field는 비어있는 상태이다. 사진이 업로드 되지 않았기 때문에 Uploaded가 False이다.
+![1](https://user-images.githubusercontent.com/62539910/120147961-773b8c80-c222-11eb-993b-b8d7ac8dd35c.PNG)
+
+- Customer가 사진을 업로드하면 해당 사진파일은 내부 모듈에 의해서 AES 암호화가 진행되고 암호화된 파일 .enc 가 생성되어 저장된다. Customer가 사진을 업로드한 시점에 Uploaded는 True로 바뀌어 체크박스가 채워지고 Clerk가 사진을 다운받을 수 있도록 한다.
+![2](https://user-images.githubusercontent.com/62539910/120147964-786cb980-c222-11eb-8e5f-7f48bc675d5e.PNG)
+
+
+### UC6 사진 복호화
+- /picturehandler/decrypt/<int:pk>
+사진 복호화
+: Customer가 등록한 사진이 암호화 되어 저장되어 있고 Uploaded 가 True라면 Clerk는 사진 복호화 및 다운로드를 요청할 수 있다. Clerk가 사진 복호화 및 다운로드를 요청하기 직전에는 다음과 같은 내용이 DB에 들어간다.
+![3](https://user-images.githubusercontent.com/62539910/120147968-799de680-c222-11eb-81c7-1ee77f5ff695.PNG)
+
+- /picturehandler/picturedelete/<int:pk>
+복호화된 사진 삭제
+: Clerk가 사진을 다운받는 즉시 해당 레코드는 DB에서 삭제해서 기록을 없앤다.
+![4](https://user-images.githubusercontent.com/62539910/120147969-7acf1380-c222-11eb-8cea-42b2afdc47bd.PNG)
+
+### UC7 요청 생성
+- /clerk/create
+Customer 선택
+: Customer의 username을 검색하여 존재할 경우 문서 선택화면으로 이동한다. Customer이외의 계정을 대상으로 요청을 생성할 수 없다.
+![selectCustomer](https://user-images.githubusercontent.com/78745580/120116672-34e36280-c1c4-11eb-8af4-27fd917b1531.png)
+: 일치하는 customer가 없다면 경고창이 띄워진다.
+![alert1](https://user-images.githubusercontent.com/78745580/120116700-5a706c00-c1c4-11eb-84c0-79989b2ff170.png)
+
+- /clerk/create/select/<str:customer_name>
+Document 선택
+: 선택한 Customer에게 요청할 문서를 선택하여 요청을 생성한다. 문서를 선택하지 않고 생성을 완료할 수 없다.
+![selectDocument](https://user-images.githubusercontent.com/78745580/120116828-f4381900-c1c4-11eb-9021-39b0a417a3a2.png)
+
+
+### UC8 사진 다운로드
+- /clerk/rlist
+요청목록 조회 
+: 생성한 요청을 조회할 수 있고 사진이 업로드 되었다면 다운로드가 활성화 된다.
+![requestList](https://user-images.githubusercontent.com/78745580/120116929-a374f000-c1c5-11eb-9b19-ae29ebcbb968.png)
+
+- /clerk/download/<int:pk>
+사진 다운로드
+: 업로드된 사진의 다운로드를 시도하거나 뒤로 돌아갈 수 있다.
+![download1](https://user-images.githubusercontent.com/78745580/120116954-c43d4580-c1c5-11eb-93ef-3029ee284e2b.png)
+
+- /clerk/decryptor/<int:pk>
+복호화된 사진 다운로드
+: 암호화된 파일로 부터 원본 사진을 얻어 다운로드 할 수 있으며 홈으로 돌아가는 즉시 해당 요청은 삭제된다.
+![download2](https://user-images.githubusercontent.com/78745580/120117073-69581e00-c1c6-11eb-9a4d-d4f61a3744ba.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
