@@ -75,6 +75,15 @@ python manage.py runserver
 http://127.0.0.1:8000/
 ```
 
+### import
+```
+django==3.2.3
+Pillow==8.2.0
+pycrypto==2.6.0
+matplotlib==3.4.2
+django-bootstrap-v5
+```
+
 ## Page Organization
 
 - /customer
