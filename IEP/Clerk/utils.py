@@ -2,18 +2,13 @@ from django.shortcuts import render
 from core.models import *
 from core.forms import *
 from django.contrib import messages
-
+ 
 class DB_connector:
 
     @classmethod
     def get_customer_list(cls):
         customers = User.objects.all()
         return customers
-
-    @classmethod
-    def get_document_list(cls):
-        documents = Document.objects.all()
-        return documents
 
     @classmethod
     def create(cls, form,user):
@@ -30,7 +25,7 @@ class Customer_checker:
         if customer_info.is_valid():
             customer_name = customer_info.cleaned_data['customer_name']
             for customer in cls.customers:
-                if customer.username == customer_name and customer.is_customer == 1:  # check customer
+                if customer.username == customer_name and customer.is_customer == True:  # check customer
                     return True
             return False
 

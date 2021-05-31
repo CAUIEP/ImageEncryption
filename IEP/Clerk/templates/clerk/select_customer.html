@@ -14,9 +14,9 @@
 </head>
 <body>
     <div>
-        <a href="{% url 'home' %}" class='menu'>home</a>
-        <a href="{% url 'Clerk:clerk_home' %}" class='menu'>clerk</a>
-        <a href="{% url 'Customer:customer_home' %}" class='menu'>customer</a>
+        <a href="{% url 'home' %}" class='menu'>| Home |</a>
+        <a href="{% url 'Clerk:signup' %}" class='menu'>Sign up</a>
+        <a href="{% url 'Clerk:logout' %}" class='menu'>Log out</a>
     </div>
 
     <h1>Request page</h1>
@@ -37,17 +37,6 @@
         </form>
 
     </div>
-
-    <div>
-        <a href="">logout</a>
-    </div>
-
-    <!-- <form action="{% url 'Clerk:select_customer' %}" method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="OK">
-    </form> -->
-
 
 </body>
 </html>

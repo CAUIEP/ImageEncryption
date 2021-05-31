@@ -14,28 +14,29 @@
 </head>
 <body>
     <div>
-        <a href="{% url 'home' %}" class='menu'>home</a>
-        <a href="{% url 'Clerk:clerk_home' %}" class='menu'>clerk</a>
-        <a href="{% url 'Customer:customer_home' %}" class='menu'>customer</a>
+        <a href="{% url 'home' %}" class='menu'>| Home |</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'Clerk:signup' %}" class='menu'>Sign up</a>
+        <a href="{% url 'Clerk:logout' %}" class='menu'>Log out</a>
+        {% endif %}
     </div>
-    
+
     {% if user.is_active %}
-        <h1>Hello, clerk!</h1>
+        <h1>Hello,  <i>'{{user.username}}'</i> !</h1>
         <p>원하는 서비스를 선택하십시오.</p>
         <div>
             <p>
-                <button type="button" onclick="location.href='{% url 'Clerk:select_customer' %}'" class='clerkService'>
+                <button type="button" onclick="location.href='{% url "Clerk:select_customer" %}'" class='clerkService'>
                     고객에게 서류 사진 요청
                 </button> 
             </p>
             <p>
-                <button type="button" onclick="location.href='{% url 'Clerk:picture_request_list' %}'" class='clerkService'>
+                <button type="button" onclick="location.href='{% url "Clerk:picture_request_list" %}'" class='clerkService'>
                     요청된 서류 제출 확인
                 </button>
             </p>
         </div>
         <div>
-        <a href="{% url 'Clerk:logout' %}">logout</a>
         </div>
 
         {% if messages %}        
@@ -50,10 +51,10 @@
         <p>로그인 혹은 회원가입 후 서비스 이용이 가능합니다.</p>
         <div>
             <button type="button" onclick="location.href='{% url 'Clerk:login' %}'" id='login'>
-                login
+                Login
             </button> 
             <button type="button" onclick="location.href='{% url 'Clerk:signup' %}'" id='signup'>
-                signup
+                Signup
             </button>
         </div>
 

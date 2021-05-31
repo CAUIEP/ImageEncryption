@@ -13,9 +13,13 @@
 </head>
 <body>
     <div>
-        <a href="{% url 'home' %}" class='menu'>home</a>
-        <a href="{% url 'Clerk:clerk_home' %}" class='menu'>clerk</a>
-        <a href="{% url 'Customer:customer_home' %}" class='menu'>customer</a>
+        <a href="{% url 'home' %}" class='menu'>| Home |</a>
+        <a href="{% url 'Clerk:signup' %}" class='menu'>Sign up</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'Clerk:logout' %}" class='menu'>Log out</a>
+        {% else %}
+        <a href="{% url 'Clerk:login' %}" class='menu'>Log in</a>
+        {% endif %}
     </div>
 
     <h1>Login page</h1>
@@ -26,7 +30,7 @@
         <div>
             {% for field in form %}
             <p>
-                <input type="{{ field.field.widget.input_type }}" name="{{field.name}}" class='clerkLoginForm' placeholder="{{field.label}}">
+                <input type="{{ field.field.widget.input_type }}" name="{{field.name}}" class='clerkForm' placeholder="{{field.label}}">
             </p>
         
             {% endfor %}
@@ -35,7 +39,7 @@
         </div>
     </form>
     {{error}}
-    
+
 </body>
 </html>
 

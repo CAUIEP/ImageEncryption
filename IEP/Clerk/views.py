@@ -1,5 +1,5 @@
+from core.forms import SignUpForm
 from django.forms import fields
-from django.shortcuts import  redirect
 from core.models import *
 from core.forms import *
 from .forms import *
@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View
 from .utils import *
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 
 
 def clerk_home(request):
@@ -19,7 +19,8 @@ def clerk_home(request):
 
 def sign_up(request):
     if request.method == "POST":
-        form = SignUpForm(request.POST)
+        form = ClerkSignUpForm(request.POST)
+
         if form.is_valid():
             user = form.save()
             user.is_clerk = True
@@ -29,10 +30,11 @@ def sign_up(request):
             ctx = {
                 "form": form,
             }
+
             return Page_maker.make_page(request, "clerk/sign_up.html", ctx)
 
     elif request.method == "GET":
-        form = SignUpForm()
+        form = ClerkSignUpForm()
         ctx = {
             "form": form,
         }
@@ -87,29 +89,13 @@ def select_customer(request):
         return Page_maker.make_page(request, "clerk/select_customer.html", {"form": form})
 
 
-#Create
-@login_required
-def picture_request_create(request):
-    user = request.user
-    if request.method == "POST":
-        form = PictureRequestForm(request.POST)
-        if form.is_valid():
-            picture = form.save()
-            picture.clerk = user
-            picture = form.save()
-            return redirect('Customer:customer_home')
-    else:
-        form = PictureRequestForm()
-        return render(request, "clerk/picture_request_create.html", {"form": form})
-
-
 def picture_request_list(request):
     picture_request = PictureRequest.objects.filter(clerk=request.user)
     context = {
         "picture_request": picture_request,
     }
-    print("already packed")
-    return render(request, "clerk/picture_request_list.html", context)
+    # print("already packed")
+    return Page_maker.make_page(request, "clerk/picture_request_list.html", context)
 
 
 def picture_download(request, pk):
@@ -117,7 +103,7 @@ def picture_download(request, pk):
     context = {
         "picture_request": picture_request
     }
-    return render(request, "clerk/picture_download.html", context)
+    return Page_maker.make_page(request, "clerk/picture_download.html", context)
 
 def picture_decryptor(request, pk):
     return redirect("PictureHandler:picture_handler_decryptor", pk)
@@ -127,24 +113,21 @@ def picture_decryptor(request, pk):
 class select_document_view(View):
     def get(self, request, customer_name):
 
-        documents = DB_connector.get_document_list()
         customer = User.objects.get(username__exact=customer_name)
-        
-        return Page_maker.make_page(request,"clerk/select_document.html",{"customer": customer, "documents": documents})
+        form = RequestForm()
+        return Page_maker.make_page(request,"clerk/select_document.html",{"customer": customer,"form":form})
 
     def post(self, request, customer_name): 
         user = request.user
-        form = PictureRequestForm(request.POST)
+        form = RequestForm(request.POST)
 
         if request.POST['document'] == '':
-            print(request.POST)
 
-            documents = DB_connector.get_document_list()
             customer = User.objects.get(username__exact=customer_name)
 
             Notification_operator.notify(request,"문서를 확인해주세요.")
 
-            return Page_maker.make_page(request,"clerk/select_document.html",{"customer": customer, "documents": documents})
+            return Page_maker.make_page(request,"clerk/select_document.html",{"customer": customer, "form": form})
 
         DB_connector.create(form, user)
         Notification_operator.notify(request,"요청생성이 완료되었습니다.")
